@@ -70,7 +70,10 @@
                     </div>
                 @else
                     <a href="{{ route('login') }}" class="px-4 py-2 text-dark hover:text-rose-500 font-medium transition duration-300">Login</a>
-                    <a href="{{ route('register') }}" class="px-6 py-2 bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-full hover:from-purple-600 hover:to-rose-500 font-medium transition duration-300 transform hover:scale-105">Register</a>
+                    <a href="{{ route('register') }}" class="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-full hover:from-purple-600 hover:to-rose-500 font-medium transition duration-300 transform hover:scale-105" aria-label="Create an account">
+                        <i class="fas fa-user-plus" aria-hidden="true"></i>
+                        <span>Register</span>
+                    </a>
                 @endauth
             </div>
 

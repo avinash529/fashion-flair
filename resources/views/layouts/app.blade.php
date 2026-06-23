@@ -74,6 +74,14 @@
                     </div>
                 </div>
             @else
+                <a href="{{ route('register') }}" class="nav-register-icon" aria-label="Create an account" title="Register">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 8v6"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 11h-6"/>
+                    </svg>
+                </a>
                 <a href="{{ route('login') }}" class="nav-cta">Sign In</a>
             @endauth
 
