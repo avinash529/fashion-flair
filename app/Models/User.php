@@ -28,7 +28,7 @@ class User extends Authenticatable
         self::ROLE_CUSTOMER,
     ];
 
-    protected $fillable = ['name', 'email', 'password', 'role', 'phone'];
+    protected $fillable = ['name', 'email', 'password', 'role', 'phone', 'google_id', 'google_avatar'];
 
     protected $hidden = ['password', 'remember_token'];
 

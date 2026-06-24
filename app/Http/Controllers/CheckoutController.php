@@ -54,13 +54,6 @@ class CheckoutController extends Controller
     {
         $data = $request->validate([
             'address_id' => 'nullable|integer',
-            'name' => 'required_without:address_id|string|max:255',
-            'phone' => 'required_without:address_id|string|max:20',
-            'line1' => 'required_without:address_id|string|max:255',
-            'line2' => 'nullable|string|max:255',
-            'city' => 'required_without:address_id|string|max:100',
-            'state' => 'required_without:address_id|string|max:100',
-            'pincode' => 'required_without:address_id|string|max:10',
             'payment_method' => 'required|in:cod',
             'save_address' => 'nullable|boolean',
             'notes' => 'nullable|string|max:500',
@@ -82,15 +75,27 @@ class CheckoutController extends Controller
             }
         }
 
-        $shippingData = $address ? [
-            'name' => $address->name,
-            'phone' => $address->phone,
-            'line1' => $address->line1,
-            'line2' => $address->line2,
-            'city' => $address->city,
-            'state' => $address->state,
-            'pincode' => $address->pincode,
-        ] : $request->only(['name', 'phone', 'line1', 'line2', 'city', 'state', 'pincode']);
+        if ($address) {
+            $shippingData = [
+                'name' => $address->name,
+                'phone' => $address->phone,
+                'line1' => $address->line1,
+                'line2' => $address->line2,
+                'city' => $address->city,
+                'state' => $address->state,
+                'pincode' => $address->pincode,
+            ];
+        } else {
+            $shippingData = $request->validate([
+                'name' => 'required|string|max:255',
+                'phone' => 'required|string|max:20',
+                'line1' => 'required|string|max:255',
+                'line2' => 'nullable|string|max:255',
+                'city' => 'required|string|max:100',
+                'state' => 'required|string|max:100',
+                'pincode' => 'required|string|max:10',
+            ]);
+        }
 
         if (!$address && $request->boolean('save_address')) {
             auth()->user()->addresses()->create($shippingData);
